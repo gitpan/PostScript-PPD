@@ -1,0 +1,14 @@
+--- #YAML:1.0
+name:                PostScript-PPD
+version:             0.0100
+abstract:            Read PostScript Printer Definition files
+license:             ~
+generated_by:        ExtUtils::MakeMaker version 6.36
+distribution_type:   module
+requires:     
+    Compress::Zlib:                2
+meta-spec:
+    url:     http://module-build.sourceforge.net/META-spec-v1.2.html
+    version: 1.2
+author:
+    - Philip Gwyn <fil@localdomain>

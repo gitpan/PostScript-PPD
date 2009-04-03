@@ -1,0 +1,15 @@
+MANIFEST
+Makefile.PL
+README
+lib/PostScript/PPD.pm
+t/00_coverage.t
+t/10_main.t
+t/20_more.t
+t/30_difficult.t
+t/ppd/Generic-PCL_5_Printer-gimp-print-ijs.ppd
+t/ppd/HP-LaserJet_4L-hpijs.ppd
+t/ppd/LJ4L.ppd
+t/ppd/pcl-4l.ppd.gz
+t/ppd/postscript.ppd.gz
+t/ppd/zebraep2.ppd.gz
+META.yml                                 Module meta-data (added by MakeMaker)
