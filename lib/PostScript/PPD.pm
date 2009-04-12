@@ -8,7 +8,7 @@ use Compress::Zlib qw( gzopen );
 use Carp qw( carp croak confess cluck );
 use IO::File;
 
-our $VERSION = '0.0100';
+our $VERSION = '0.0200';
 
 ################################################
 sub new

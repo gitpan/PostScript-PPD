@@ -1,8 +1,11 @@
 MANIFEST
 Makefile.PL
 README
+eg/check
 lib/PostScript/PPD.pm
 t/00_coverage.t
+t/01_pod.t
+t/02_pod_coverage.t
 t/10_main.t
 t/20_more.t
 t/30_difficult.t

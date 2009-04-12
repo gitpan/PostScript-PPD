@@ -5,6 +5,7 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     NAME              => 'PostScript::PPD',
     VERSION_FROM      => 'lib/PostScript/PPD.pm', # finds $VERSION
+    LICENSE           => 'perl',
     PREREQ_PM         => {
         Compress::Zlib => 2,
 

@@ -1,8 +1,8 @@
 --- #YAML:1.0
 name:                PostScript-PPD
-version:             0.0100
+version:             0.0200
 abstract:            Read PostScript Printer Definition files
-license:             ~
+license:             perl
 generated_by:        ExtUtils::MakeMaker version 6.36
 distribution_type:   module
 requires:     
