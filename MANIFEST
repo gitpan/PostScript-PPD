@@ -1,5 +1,6 @@
 MANIFEST
 Makefile.PL
+Changes
 README
 eg/check
 lib/PostScript/PPD.pm

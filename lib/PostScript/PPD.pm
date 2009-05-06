@@ -1,6 +1,6 @@
 package PostScript::PPD;
 
-use 5.008008;
+# use 5.008008;
 use strict;
 use warnings;
 
@@ -8,7 +8,7 @@ use Compress::Zlib qw( gzopen );
 use Carp qw( carp croak confess cluck );
 use IO::File;
 
-our $VERSION = '0.0200';
+our $VERSION = '0.0201';
 
 ################################################
 sub new
@@ -494,6 +494,10 @@ PostScript::PPD - Read PostScript Printer Definition files
 
     print "Default $groups[0] $UIs[0]: ", $ui->default;
 
+=head1 ABSTRACT
+
+PostScript::PPD reads and parses PostScript Printer Definition files, called
+PPDs.  
 
 =head1 DESCRIPTION
 
