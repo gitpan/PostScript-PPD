@@ -8,7 +8,7 @@ use Compress::Zlib qw( gzopen );
 use Carp qw( carp croak confess cluck );
 use IO::File;
 
-our $VERSION = '0.0201';
+our $VERSION = '0.0202';
 
 ################################################
 sub new
@@ -348,7 +348,8 @@ use warnings;
 use Carp;
 use Data::Dumper;
 
-use overload '""' => \&as_string;
+use overload '""' => \&as_string,
+    fallback => 1;
 
 sub new
 {
