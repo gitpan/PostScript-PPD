@@ -8,7 +8,7 @@ use Compress::Zlib qw( gzopen );
 use Carp qw( carp croak confess cluck );
 use IO::File;
 
-our $VERSION = '0.0202';
+our $VERSION = '0.0203';
 
 ################################################
 sub new
@@ -681,7 +681,7 @@ Philip Gwyn, E<lt>gwyn-at-cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2008 by Philip Gwyn
+Copyright (C) 2008-2011 by Philip Gwyn
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.8 or,

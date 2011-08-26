@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               PostScript-PPD
-version:            0.0202
+version:            0.0203
 abstract:           Read PostScript Printer Definition files
 author:
     - Philip Gwyn <fil@localdomain>

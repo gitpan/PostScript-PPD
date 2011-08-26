@@ -3,10 +3,13 @@
 use strict;
 use warnings;
 
-use Test::More ( tests => 67 );
+use Test::More ( tests => 68 );
 use Data::Dumper;
 
-use PostScript::PPD;
+use t::ChkUtil;
+dualvar_or_skip 68;
+
+use_ok( 'PostScript::PPD' );
 
 my $ppd = PostScript::PPD->new;
 
