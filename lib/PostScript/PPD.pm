@@ -6,9 +6,10 @@ use warnings;
 
 use Compress::Zlib qw( gzopen );
 use Carp qw( carp croak confess cluck );
+use Storable qw( dclone );
 use IO::File;
 
-our $VERSION = '0.0203';
+our $VERSION = '0.0204';
 
 ################################################
 sub new
@@ -33,24 +34,32 @@ sub load
 
     local $self->{__read_state};
 
-    if( $file =~ /\.gz$/ ) {
-        my $gz = gzopen( $file, "rb" );
-        croak "Unable to read $file: $!" unless $gz;
-        $self->{file} = $file;
+    my $linenum = 0;
+    eval {
+        if( $file =~ /\.gz$/ ) {
+            my $gz = gzopen( $file, "rb" );
+            croak "Unable to read $file: $!" unless $gz;
+            $self->{file} = $file;
 
-        my( $line, $size );
-        while( $size = $gz->gzreadline( $line ) ) {
-            $self->__read_line( $line );
+            my( $line, $size );
+            while( $size = $gz->gzreadline( $line ) ) {
+                $linenum++;
+                $self->__read_line( $line );
+            }
         }
-    }
-    else {
-        my $fh = IO::File->new( $file );
-        croak "Unable to read $file: $!" unless $fh;
-        $self->{file} = $file;
-
-        while( <$fh> ) {
-            $self->__read_line( $_ );
+        else {
+            my $fh = IO::File->new( $file );
+            croak "Unable to read $file: $!" unless $fh;
+            $self->{file} = $file;
+            while( <$fh> ) {
+                $DB::single = 1 if $. == 109;
+                $linenum++;
+                $self->__read_line( $_ );
+            }
         }
+    };
+    if( $@ ) {
+        die "File $file line $linenum: $@";
     }
 }
 
@@ -115,7 +124,7 @@ sub __read_line
 ################################################
 sub __append
 {
-    my( $self, $line ) = @_;
+    my( $self, $line, $len ) = @_;
 
     my $S = $self->{__read_state};
     my $exit = 0;
@@ -125,7 +134,7 @@ sub __append
         $exit = 1;
     }    
     elsif( $line =~ m/^"/ ) {
-        $exit = 0;
+        $exit = ( 0 != length $S->{value} );
     }
     elsif( not $S->{value} ) {
         $line =~ s/\s+$//;
@@ -330,14 +339,20 @@ sub __mk_subkey
 sub Group
 {
     my( $self, $name ) = @_;
+    if( $name eq '_default' ) {
+        my $ret = dclone $self;
+        return $self->__mk_subkey( $ret, $self, $name );
+    }
     return $self->get( $self->{group}, $name );
 }
 
 sub Groups
 {
     my( $self ) = @_;
-    return @{ $self->{__group_sorted} } if wantarray;
-    return [ @{ $self->{__group_sorted} } ];
+    my @ret = @{ $self->{__group_sorted}||[] };
+    unshift @ret, '_default' if $self->{__UI_sorted};
+    return @ret if wantarray;
+    return \@ret;
 }
 
 ############################################################################
@@ -357,7 +372,7 @@ sub new
     my $self = bless { %$data }, $package;
     $self->{__parent} = $parent;
     $self->{__subkey} = $subkey;
-    confess "Need a subkey" unless $subkey;
+    confess "Need a subkey" unless defined $subkey;
     return $self;
 }
 

@@ -3,7 +3,10 @@
 use strict;
 use warnings;
 
-use Test::More ( tests => 17 );
+use FindBin;
+use lib "$FindBin::Bin/..";
+
+use Test::More ( tests => 18 );
 use Data::Dumper;
 
 use t::ChkUtil;
@@ -79,4 +82,8 @@ is( "$A", q,
         /Angle 37
       >> sethalftone
     ,, " ... value" ) or die $A->Dump; 
+
+##########################################
+$ppd->load( "t/ppd/lj4515.ppd" );
+pass( "Loaded LJ 4L ppd" );
 
