@@ -4,10 +4,12 @@ use strict;
 use warnings;
 
 use FindBin;
-use lib "$FindBin::Bin/..";
+BEGIN { chdir "$FindBin::Dir/.." }
 
 use Test::More ( tests => 14 );
 use Data::Dumper;
+
+
 
 use t::ChkUtil;
 dualvar_or_skip 14;

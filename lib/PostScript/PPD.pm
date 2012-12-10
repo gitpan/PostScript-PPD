@@ -9,7 +9,7 @@ use Carp qw( carp croak confess cluck );
 use Storable qw( dclone );
 use IO::File;
 
-our $VERSION = '0.0204';
+our $VERSION = '0.0205';
 
 ################################################
 sub new
